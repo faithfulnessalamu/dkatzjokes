@@ -16,12 +16,15 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragHomeBinding.inflate(inflater, container, false)
-
-        val viewModel: HomeFragmentViewModel by viewModels {
+        val fragViewModel: HomeFragmentViewModel by viewModels {
             DependencyManager.provideHomeFragmentViewModelFactory()
         }
 
+        binding = FragHomeBinding.inflate(inflater, container, false)
+            .apply {
+                viewModel = fragViewModel
+                lifecycleOwner = viewLifecycleOwner
+            }
 
         setupRecyclerView()
 
