@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.vague.android.dkatzjokes.data.Repository
 import com.vague.android.dkatzjokes.data.model.Joke
 
-class HomeFragmentViewModel(private val repository: Repository) : ViewModel() {
+class HomeFragmentViewModel(repository: Repository) : ViewModel() {
 
     private val _dataset = repository.getAllJokes()
     val dataset: LiveData<List<Joke>>
