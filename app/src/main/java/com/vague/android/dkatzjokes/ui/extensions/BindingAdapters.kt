@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vague.android.dkatzjokes.data.model.Joke
 import com.vague.android.dkatzjokes.ui.home.HomeFragmentAdapter
 
-@BindingAdapter("dataset")
+@BindingAdapter("app:dataset")
 fun setRecyclerViewDataset(recyclerView: RecyclerView, dataset: List<Joke>) {
     (recyclerView.adapter as HomeFragmentAdapter)
         .submitList(dataset)
