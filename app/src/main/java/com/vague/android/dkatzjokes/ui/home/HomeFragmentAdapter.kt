@@ -1,15 +1,12 @@
 package com.vague.android.dkatzjokes.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
-import com.vague.android.dkatzjokes.R
 import com.vague.android.dkatzjokes.data.model.Joke
+import com.vague.android.dkatzjokes.databinding.LayoutJokeItemBinding
 
 class HomeFragmentAdapter : ListAdapter<Joke, HomeFragmentViewHolder>(
     object : DiffUtil.ItemCallback<Joke>() {
@@ -23,8 +20,10 @@ class HomeFragmentAdapter : ListAdapter<Joke, HomeFragmentViewHolder>(
     }
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeFragmentViewHolder {
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.layout_joke_item, parent, false)
-        return HomeFragmentViewHolder(inflatedView)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = LayoutJokeItemBinding.inflate(inflater, parent, false)
+
+        return HomeFragmentViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: HomeFragmentViewHolder, position: Int) {
@@ -32,15 +31,13 @@ class HomeFragmentAdapter : ListAdapter<Joke, HomeFragmentViewHolder>(
     }
 }
 
-class HomeFragmentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-    val txtJokeSetup = view.findViewById<TextView>(R.id.txt_joke_setup)
-    val txtJokePunchline = view.findViewById<TextView>(R.id.txt_joke_punchline)
-    val txtJokeType = view.findViewById<Chip>(R.id.chip_joke_type)
+class HomeFragmentViewHolder(private val binding: LayoutJokeItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(joke: Joke) {
-        txtJokeSetup.text = joke.setup
-        txtJokePunchline.text = joke.punchline
-        txtJokeType.text = joke.type
+        binding.apply {
+            txtJokeSetup.text = joke.setup
+            txtJokePunchline.text = joke.punchline
+            chipJokeType.text = joke.type
+        }
     }
 }
