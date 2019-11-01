@@ -1,7 +1,8 @@
-package com.vague.android.dkatzjokes
+package com.vague.android.dkatzjokes.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.vague.android.dkatzjokes.R
 
 class MainActivity : AppCompatActivity() {
 
