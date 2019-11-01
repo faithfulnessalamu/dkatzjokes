@@ -11,11 +11,21 @@ import timber.log.Timber
 class HomeFragment : Fragment() {
 
     private val homeTimber = Timber.tag(TAG)
+    private lateinit var binding: FragHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragHomeBinding.inflate(inflater, container, false)
+        binding = FragHomeBinding.inflate(inflater, container, false)
+
+        setupRecyclerView()
 
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        homeTimber.d("setupRecyclerView Called")
+
+        val adapter = HomeFragmentAdapter()
+        binding.recyclerviewJokesHome.adapter = adapter
     }
 
     companion object {
