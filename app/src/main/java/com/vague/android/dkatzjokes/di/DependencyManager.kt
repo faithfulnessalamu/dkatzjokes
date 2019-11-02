@@ -5,6 +5,7 @@ import com.vague.android.dkatzjokes.data.DefaultRepository
 import com.vague.android.dkatzjokes.data.source.local.DefaultLocalDataSource
 import com.vague.android.dkatzjokes.data.source.local.LocalDatabase
 import com.vague.android.dkatzjokes.data.source.remote.DefaultRemoteDataSource
+import com.vague.android.dkatzjokes.data.source.remote.DkatzApiService
 import com.vague.android.dkatzjokes.ui.home.HomeFragmentViewModelFactory
 
 object DependencyManager {
@@ -14,7 +15,7 @@ object DependencyManager {
     }
 
     fun provideLocalDataSource(context: Context) = DefaultLocalDataSource(provideLocalDatabase(context).jokesDao)
-    fun provideRemoteDataSource() = DefaultRemoteDataSource()
+    fun provideRemoteDataSource() = DefaultRemoteDataSource(DkatzApiService.create())
 
     fun provideRepository(context: Context) =
         DefaultRepository(provideLocalDataSource(context), provideRemoteDataSource())
