@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
             homeTimber.d(it.toString())
             (binding.recyclerviewJokesHome.adapter as HomeFragmentAdapter)
                 .submitList(it.reversed())
-            binding.recyclerviewJokesHome.smoothScrollToPosition(0)
+            binding.recyclerviewJokesHome.adapter?.notifyItemInserted(0)
         })
 
         return binding.root
