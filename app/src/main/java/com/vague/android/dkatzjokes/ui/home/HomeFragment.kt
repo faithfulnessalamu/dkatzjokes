@@ -17,7 +17,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragViewModel: HomeFragmentViewModel by viewModels {
-            DependencyManager.provideHomeFragmentViewModelFactory()
+            DependencyManager.provideHomeFragmentViewModelFactory(requireContext())
         }
 
         binding = FragHomeBinding.inflate(inflater, container, false)
