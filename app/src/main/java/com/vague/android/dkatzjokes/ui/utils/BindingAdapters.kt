@@ -16,3 +16,10 @@ fun setRecyclerViewDataset(recyclerView: RecyclerView, dataset: List<Joke>) {
 fun swiperIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout, isRefreshing: Boolean) {
     swipeRefreshLayout.isRefreshing = isRefreshing
 }
+
+@BindingAdapter("app:onRefresh")
+fun swiperOnRefresh(swipeRefreshLayout: SwipeRefreshLayout, onRefresh: () -> Unit) {
+    swipeRefreshLayout.setOnRefreshListener {
+        onRefresh.invoke()
+    }
+}
