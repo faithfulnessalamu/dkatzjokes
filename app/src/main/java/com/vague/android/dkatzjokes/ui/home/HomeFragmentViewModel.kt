@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vague.android.dkatzjokes.data.Repository
 import com.vague.android.dkatzjokes.data.model.Joke
-import timber.log.Timber
 
 class HomeFragmentViewModel(private val repository: Repository) : ViewModel() {
 
@@ -25,8 +24,6 @@ class HomeFragmentViewModel(private val repository: Repository) : ViewModel() {
 
     fun refresh() {
         _isRefreshing.value = true
-        Timber.tag(TAG).d("Refreshing")
-        _isRefreshing.value = false
     }
 
     companion object {
