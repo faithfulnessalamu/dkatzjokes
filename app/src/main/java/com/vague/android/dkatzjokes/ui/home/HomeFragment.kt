@@ -28,8 +28,17 @@ class HomeFragment : Fragment() {
                 lifecycleOwner = viewLifecycleOwner
             }
 
+
         setupRecyclerView()
         setupSwipeRefresh()
+
+        binding.viewModel?.getSavedJokes()?.observe(viewLifecycleOwner, Observer {
+            if (it == null) return@Observer
+            homeTimber.d(it.toString())
+            (binding.recyclerviewJokesHome.adapter as HomeFragmentAdapter)
+                .submitList(it.reversed())
+            binding.recyclerviewJokesHome.smoothScrollToPosition(0)
+        })
 
         return binding.root
     }
@@ -37,6 +46,7 @@ class HomeFragment : Fragment() {
     private fun setupSwipeRefresh() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.viewModel?.setRefreshing(true)
+
             binding.viewModel?.getNewJokes()?.observe(viewLifecycleOwner,
                 Observer {
                     homeTimber.d("In refresh Observer")

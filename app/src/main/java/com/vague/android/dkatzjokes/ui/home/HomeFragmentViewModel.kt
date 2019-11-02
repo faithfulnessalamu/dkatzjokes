@@ -17,15 +17,7 @@ class HomeFragmentViewModel(private val repository: Repository) : ViewModel() {
     val isRefreshing: LiveData<Boolean>
         get() = _isRefreshing
 
-    val dataset: LiveData<List<Joke>>
-        get() {
-            val liveJokes = repository.getAllJokes()
-            if (liveJokes.value == null) {
-                return MutableLiveData(emptyList())
-            }
-
-            return liveJokes
-        }
+    fun getSavedJokes() = repository.getAllJokes()
 
     fun getNewJokes(): LiveData<ApiResult> = repository.getTenNewJokes()
 

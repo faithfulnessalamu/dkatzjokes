@@ -11,7 +11,7 @@ class DefaultRepository(
     private val remoteDataSource: RemoteDataSource
 ) : Repository {
 
-    override fun getAllJokes(): LiveData<List<Joke>> = localDataSource.getAllJokes()
+    override fun getAllJokes() = localDataSource.getAllJokes()
 
     override fun getTenNewJokes(): LiveData<ApiResult> = remoteDataSource.getTenNewJokes()
 
