@@ -1,4 +1,4 @@
-package com.vague.android.dkatzjokes.ui.extensions
+package com.vague.android.dkatzjokes.ui.utils
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
