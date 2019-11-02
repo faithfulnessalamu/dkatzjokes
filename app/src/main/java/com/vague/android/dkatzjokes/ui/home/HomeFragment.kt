@@ -42,11 +42,10 @@ class HomeFragment : Fragment() {
                     homeTimber.d("In refresh Observer")
                     when (it) {
                         is ApiResult.Success -> {
-                            homeTimber.d("Updating adapter")
                             if (it.data.isNotEmpty()) {
+                                homeTimber.d("Updating adapter")
                                 binding.viewModel?.setRefreshing(false)
-                                (binding.recyclerviewJokesHome.adapter as HomeFragmentAdapter)
-                                    .submitList(it.data)
+                                binding.viewModel?.saveJokes(it.data)
                             }
                         }
                         is ApiResult.Failure -> {
