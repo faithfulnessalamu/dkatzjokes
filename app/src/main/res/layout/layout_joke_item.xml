@@ -54,8 +54,6 @@
                 android:layout_marginEnd="8dp"
                 android:clickable="false"
                 android:focusable="false"
-                android:textColor="@android:color/white"
-                app:chipSurfaceColor="@color/colorAccent"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_joke_punchline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/txt_joke_punchline"
