@@ -2,6 +2,7 @@ package com.vague.android.dkatzjokes.ui.utils
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.vague.android.dkatzjokes.data.model.Joke
 import com.vague.android.dkatzjokes.ui.home.HomeFragmentAdapter
 
@@ -9,4 +10,9 @@ import com.vague.android.dkatzjokes.ui.home.HomeFragmentAdapter
 fun setRecyclerViewDataset(recyclerView: RecyclerView, dataset: List<Joke>) {
     (recyclerView.adapter as HomeFragmentAdapter)
         .submitList(dataset)
+}
+
+@BindingAdapter("app:isRefreshing")
+fun swiperIsRefreshing(swipeRefreshLayout: SwipeRefreshLayout, isRefreshing: Boolean) {
+    swipeRefreshLayout.isRefreshing = isRefreshing
 }
