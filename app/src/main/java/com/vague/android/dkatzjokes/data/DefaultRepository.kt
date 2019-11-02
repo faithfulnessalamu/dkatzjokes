@@ -3,6 +3,7 @@ package com.vague.android.dkatzjokes.data
 import androidx.lifecycle.LiveData
 import com.vague.android.dkatzjokes.data.model.Joke
 import com.vague.android.dkatzjokes.data.source.local.LocalDataSource
+import com.vague.android.dkatzjokes.data.source.remote.ApiResult
 import com.vague.android.dkatzjokes.data.source.remote.RemoteDataSource
 
 class DefaultRepository(
@@ -12,7 +13,7 @@ class DefaultRepository(
 
     override fun getAllJokes(): LiveData<List<Joke>> = localDataSource.getAllJokes()
 
-    override fun getTenNewJokes(): LiveData<List<Joke>> = remoteDataSource.getTenNewJokes()
+    override fun getTenNewJokes(): ApiResult = remoteDataSource.getTenNewJokes()
 
     override suspend fun saveJokes(jokes: List<Joke>) {
         localDataSource.saveJokes(jokes)
