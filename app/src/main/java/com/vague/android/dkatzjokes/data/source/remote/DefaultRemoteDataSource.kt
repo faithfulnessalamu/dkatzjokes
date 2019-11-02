@@ -1,5 +1,6 @@
 package com.vague.android.dkatzjokes.data.source.remote
 
+import androidx.lifecycle.LiveData
 import com.vague.android.dkatzjokes.data.model.Joke
 import retrofit2.Call
 import retrofit2.Callback
@@ -8,7 +9,7 @@ import retrofit2.Response
 
 class DefaultRemoteDataSource(private val dkatzApiService: DkatzApiService) : RemoteDataSource {
 
-    override fun getTenNewJokes(): ApiResult {
+    override fun getTenNewJokes(): LiveData<ApiResult> {
 
         dkatzApiService.getTenNewJokes().apply {
             enqueue(object : Callback<List<Joke>> {

@@ -8,7 +8,7 @@ interface Repository {
 
     fun getAllJokes(): LiveData<List<Joke>>
 
-    fun getTenNewJokes(): ApiResult
+    fun getTenNewJokes(): LiveData<ApiResult>
 
     suspend fun saveJokes(jokes: List<Joke>)
 }

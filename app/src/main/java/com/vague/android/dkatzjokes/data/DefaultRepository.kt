@@ -13,7 +13,7 @@ class DefaultRepository(
 
     override fun getAllJokes(): LiveData<List<Joke>> = localDataSource.getAllJokes()
 
-    override fun getTenNewJokes(): ApiResult = remoteDataSource.getTenNewJokes()
+    override fun getTenNewJokes(): LiveData<ApiResult> = remoteDataSource.getTenNewJokes()
 
     override suspend fun saveJokes(jokes: List<Joke>) {
         localDataSource.saveJokes(jokes)
