@@ -28,27 +28,35 @@ class HomeFragment : Fragment() {
                 lifecycleOwner = viewLifecycleOwner
             }
 
-        //binding.swipeRefreshLayout.setOnRefreshListener { binding.viewModel?.refresh() }
-
-        binding.viewModel?.refresh()?.observe(viewLifecycleOwner,
-            Observer {
-                homeTimber.d("In refresh Observer")
-                when (it) {
-                    is ApiResult.Success -> {
-                        homeTimber.d("Updating adapter")
-                        (binding.recyclerviewJokesHome.adapter as HomeFragmentAdapter)
-                            .submitList(it.data)
-                    }
-                    is ApiResult.Failure -> {
-                        homeTimber.e(it.message)
-                    }
-                }
-            }
-        )
-
         setupRecyclerView()
+        setupSwipeRefresh()
 
         return binding.root
+    }
+
+    private fun setupSwipeRefresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.viewModel?.setRefreshing(true)
+            binding.viewModel?.getNewJokes()?.observe(viewLifecycleOwner,
+                Observer {
+                    homeTimber.d("In refresh Observer")
+                    when (it) {
+                        is ApiResult.Success -> {
+                            homeTimber.d("Updating adapter")
+                            if (it.data.isNotEmpty()) {
+                                binding.viewModel?.setRefreshing(false)
+                                (binding.recyclerviewJokesHome.adapter as HomeFragmentAdapter)
+                                    .submitList(it.data)
+                            }
+                        }
+                        is ApiResult.Failure -> {
+                            binding.viewModel?.setRefreshing(false)
+                            homeTimber.e(it.message)
+                        }
+                    }
+                }
+            )
+        }
     }
 
     private fun setupRecyclerView() {

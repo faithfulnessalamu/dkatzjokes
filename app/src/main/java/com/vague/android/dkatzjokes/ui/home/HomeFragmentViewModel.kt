@@ -23,7 +23,11 @@ class HomeFragmentViewModel(private val repository: Repository) : ViewModel() {
             return liveJokes
         }
 
-    fun refresh(): LiveData<ApiResult> = repository.getTenNewJokes()
+    fun getNewJokes(): LiveData<ApiResult> = repository.getTenNewJokes()
+
+    fun setRefreshing(isRefreshing: Boolean) {
+        _isRefreshing.value = isRefreshing
+    }
 
     companion object {
         const val TAG = "HomeFragViewModel"
