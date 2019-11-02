@@ -6,13 +6,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+
 interface DkatzApiService {
 
-    @GET("jokes/ten")
+    @GET("random_ten")
     fun getTenNewJokes(): Call<List<Joke>>
 
     companion object {
-        const val BASE_URL = "https://official-joke-api.appspot.com"
+        private const val BASE_URL = "https://official-joke-api.appspot.com/"
 
         fun create(): DkatzApiService {
             Retrofit.Builder()
