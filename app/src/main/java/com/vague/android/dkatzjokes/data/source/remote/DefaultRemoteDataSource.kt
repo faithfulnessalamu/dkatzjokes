@@ -28,8 +28,7 @@ class DefaultRemoteDataSource(private val dkatzApiService: DkatzApiService) : Re
                     }
                 }
             })
-
-            execute()
+            //execute()
         }
 
         return result

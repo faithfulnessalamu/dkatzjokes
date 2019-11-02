@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.vague.android.dkatzjokes.data.Repository
 import com.vague.android.dkatzjokes.data.model.Joke
+import com.vague.android.dkatzjokes.data.source.remote.ApiResult
 
 class HomeFragmentViewModel(private val repository: Repository) : ViewModel() {
 
@@ -22,9 +23,7 @@ class HomeFragmentViewModel(private val repository: Repository) : ViewModel() {
             return liveJokes
         }
 
-    fun refresh() {
-        _isRefreshing.value = true
-    }
+    fun refresh(): LiveData<ApiResult> = repository.getTenNewJokes()
 
     companion object {
         const val TAG = "HomeFragViewModel"

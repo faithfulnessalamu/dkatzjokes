@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import com.vague.android.dkatzjokes.data.source.remote.ApiResult
 import com.vague.android.dkatzjokes.databinding.FragHomeBinding
 import com.vague.android.dkatzjokes.di.DependencyManager
 import timber.log.Timber
@@ -25,6 +27,24 @@ class HomeFragment : Fragment() {
                 viewModel = fragViewModel
                 lifecycleOwner = viewLifecycleOwner
             }
+
+        //binding.swipeRefreshLayout.setOnRefreshListener { binding.viewModel?.refresh() }
+
+        binding.viewModel?.refresh()?.observe(viewLifecycleOwner,
+            Observer {
+                homeTimber.d("In refresh Observer")
+                when (it) {
+                    is ApiResult.Success -> {
+                        homeTimber.d("Updating adapter")
+                        (binding.recyclerviewJokesHome.adapter as HomeFragmentAdapter)
+                            .submitList(it.data)
+                    }
+                    is ApiResult.Failure -> {
+                        homeTimber.e(it.message)
+                    }
+                }
+            }
+        )
 
         setupRecyclerView()
 

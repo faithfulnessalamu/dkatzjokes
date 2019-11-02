@@ -11,10 +11,10 @@
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:isRefreshing="@{viewModel.isRefreshing}"
-        app:onRefresh="@{viewModel.refresh}">
+        app:isRefreshing="@{viewModel.isRefreshing}">
 
         <LinearLayout
             android:layout_width="match_parent"
