@@ -8,4 +8,8 @@ class DefaultRemoteDataSource : RemoteDataSource {
     override fun getTenNewJokes(): LiveData<List<Joke>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    companion object {
+        const val TAG = "DefaultRemoteDS"
+    }
 }
