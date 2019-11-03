@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DkatzJokes</string>
+    <string name="dkatz_jokes">Dkatz Jokes</string>
+    <string name="daily_dose_text">Your daily dose of humour</string>
 </resources>
