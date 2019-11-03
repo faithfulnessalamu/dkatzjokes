@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.vague.android.dkatzjokes.data.source.remote.ApiResult
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.vague.android.dkatzjokes.databinding.FragHomeBinding
 import com.vague.android.dkatzjokes.di.DependencyManager
 import timber.log.Timber
@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
 
         setupRecyclerView()
-        setupSwipeRefresh()
+        //setupSwipeRefresh()
 
         binding.viewModel?.getSavedJokes()?.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupSwipeRefresh() {
+    /*private fun setupSwipeRefresh() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             binding.viewModel?.setRefreshing(true)
 
@@ -66,13 +66,15 @@ class HomeFragment : Fragment() {
                 }
             )
         }
-    }
+    }*/
 
     private fun setupRecyclerView() {
         homeTimber.d("setupRecyclerView Called")
 
         val adapter = HomeFragmentAdapter()
         binding.recyclerviewJokesHome.adapter = adapter
+
+        LinearSnapHelper().attachToRecyclerView(binding.recyclerviewJokesHome)
     }
 
     companion object {
